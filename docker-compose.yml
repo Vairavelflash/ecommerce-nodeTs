@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: ecommerce-postgres
+    restart: always
+
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: user123
+      POSTGRES_DB: ecommerce_db
+
+    ports:
+      - "5435:5432"          # Host port 5435 → Container port 5432
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U username"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
