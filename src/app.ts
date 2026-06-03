@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from "helmet"
 import prisma from './lib/prisma';
@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
         success:true,
         message:"Ecommerce API Running"
     })
+})
+
+app.use("/",(req:Request,res:Response) =>{
+    res.send({"ping":"pong"})
 })
 
 app.use('/api/v1',routes)
