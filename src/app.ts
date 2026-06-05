@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from "helmet"
 import prisma from './lib/prisma';
 import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from './config/swagger';
+import { swaggerSpec } from './config/swagger.js';
 import { errorMiddleware } from './middleware/error.middleware';
 import routes from "./routes"
 import cookieParser from 'cookie-parser';
@@ -24,9 +24,7 @@ app.get("/", (req, res) => {
     })
 })
 
-app.use("/",(req:Request,res:Response) =>{
-    res.send({"ping":"pong"})
-})
+
 
 app.use('/api/v1',routes)
 
