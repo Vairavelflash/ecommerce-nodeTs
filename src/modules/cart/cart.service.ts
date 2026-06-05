@@ -18,7 +18,7 @@ export const addToCartService = async(userId:string,productId:string,quantity:nu
         throw new Error("Product unavailable")
     }
 
-    let cart = await getCartByUserId(userId);
+    let cart:any = await getCartByUserId(userId);
     
 
     if(!cart){

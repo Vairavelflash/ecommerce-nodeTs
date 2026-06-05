@@ -1,6 +1,5 @@
 import { generateOrderNumber } from "../../common/utils/order-number";
 import prisma from "../../lib/prisma";
-import { orderStatus } from "./order.validation";
 
 export const checkoutService = async (userId: string) => {
   const cart = await prisma.cart.findUnique({

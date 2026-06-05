@@ -10,7 +10,7 @@ router.use(authMiddleware);
 router.post("/checkout",checkoutController)
 router.get("/",getMyOrdersController)
 router.get("/:id",getOrderByIdController)
-router.patch("/:orderId/status",roleMiddleware("ADMIN"),updateOrderStatusController)
+router.patch("/:orderId/status",authMiddleware,roleMiddleware("ADMIN"),updateOrderStatusController)
 
 
 export default router;

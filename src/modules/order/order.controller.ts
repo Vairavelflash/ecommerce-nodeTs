@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { AuthRequest } from "../../middleware/auth.middleware";
 import {
   checkoutService,
@@ -10,7 +11,7 @@ import {
 export const checkoutController = async (req: AuthRequest, res: Response) => {
   const order = await checkoutService(req.user.id);
 
-  res.status(201).json({
+  res.json({
     success: true,
     data: order,
   });
@@ -34,7 +35,7 @@ export const getOrderByIdController = async (
   req: AuthRequest,
   res: Response,
 ) => {
-  const order = await getOrderByIdService(req.params.id, req.user.id);
+  const order = await getOrderByIdService(req.params.id as string, req.user.id);
 
   res.json({
     success: true,
@@ -42,13 +43,17 @@ export const getOrderByIdController = async (
   });
 };
 
+export const updateOrderStatusController = async (
+  req: Request,
+  res: Response,
+) => {
+  const result = await updateOrderStatusService(
+    req.params.orderId as string,
+    req?.body?.status,
+  );
 
-
-export const updateOrderStatusController = async(req:Request,res:Response) =>{
-    const result = await updateOrderStatusService(req.params.orderId,req.body.status);
-
-    res.json({
-        success:true,
-        data:result
-    })
-}
+  res.json({
+    success: true,
+    data: result,
+  });
+};

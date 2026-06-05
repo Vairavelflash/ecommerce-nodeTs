@@ -1,9 +1,10 @@
+import { Role } from "../../../generated/prisma";
 import { generateAccessToken, generateRefreshToken } from "../../middleware/auth.utils";
 import { createUser, findUserByEmail } from "./auth.repository"
 import bcrypt from 'bcrypt'
 
 
-export const registerService = async(name:string,email:string,password:string,role:string) =>{
+export const registerService = async(name:string,email:string,password:string,role:Role) =>{
     const existingUser = await findUserByEmail(email);
 
     if(existingUser){

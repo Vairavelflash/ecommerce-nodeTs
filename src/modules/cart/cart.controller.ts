@@ -46,7 +46,7 @@ export const getCartController =
   ) => {
     const result =
       await updateCartItemService(
-        req.params.itemId,
+        req.params.itemId as string,
         req.body.quantity,
         req.user.id
       );
@@ -63,7 +63,7 @@ export const getCartController =
     res: Response
   ) => {
     await deleteCartItemService(
-      req.params.itemId,
+      req.params.itemId as string,
       req.user.userId
     );
 
