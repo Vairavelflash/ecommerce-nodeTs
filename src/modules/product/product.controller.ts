@@ -74,6 +74,7 @@ export const getSearchProductsController = async (
     where.OR = [
       { name: { contains: q as string, mode: "insensitive" } },
       { description: { contains: q as string, mode: "insensitive" } },
+      { categoryId: { contains: q as string } },
     ];
   }
   const products = await prisma.product.findMany({

@@ -14,3 +14,7 @@ export const createCategoryService = async(name:string,description:string) =>{
 export const getAllCategoriesService= async () =>{
     return getAllCategories();
 }
+
+export const getCategoryByNameService= async(name:string)=>{
+    return getCategoryByName(name)
+}

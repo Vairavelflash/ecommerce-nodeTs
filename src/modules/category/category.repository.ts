@@ -10,9 +10,12 @@ export const createCategory = async (data:{
 }
 
 export const getCategoryByName = async (name:string) =>{
-    return prisma.category.findUnique({
+    return prisma.category.findFirst({
         where:{
-            name
+            name:{
+                equals:name,
+                mode:"insensitive"
+            }
         }
     })
 }

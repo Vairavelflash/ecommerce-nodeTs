@@ -1,4 +1,4 @@
-import { createCategoryService, getAllCategoriesService } from "./category.service";
+import { createCategoryService, getAllCategoriesService, getCategoryByNameService } from "./category.service";
 import { Request,Response } from "express";
 
 export const createCategoryController =async(req:Request,res:Response) =>{
@@ -19,5 +19,14 @@ export const getAllCategoriesContoller = async(req:Request,res:Response) =>{
     return res.status(200).json({
         success:true,
         data:categories
+    })
+}
+
+export const getCategoryContoller= async(req:Request,res:Response) =>{
+    const category = await getCategoryByNameService(req.params.name as string)
+
+    return res.status(200).json({
+        success:true,
+        data:category
     })
 }
