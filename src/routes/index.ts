@@ -4,6 +4,7 @@ import productRoutes from "../modules/product/product.routes"
 import categoryRoutes from "../modules/category/category.routes";
 import cartRoutes from "../modules/cart/cart.routes"
 import orderRoutes from "../modules/order/order.route";
+import aiRoutes from "../modules/ai/chat.route"
 
 const router = Router();
 
@@ -12,5 +13,6 @@ router.use("/categories",categoryRoutes)
 router.use("/products",productRoutes)
 router.use("/cart", cartRoutes);
 router.use("/orders", orderRoutes)
+// router.use("/ai",aiRoutes)
 
 export default router;
