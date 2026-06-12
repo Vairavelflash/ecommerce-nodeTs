@@ -13,7 +13,7 @@ export const roleMiddleware =(...roles:string[]) =>{
         if(!roles.includes(userRole)){
             return res.status(403).json({
                 success:false,
-                message:"Forbidden"
+                message:"User is Forbidden"
             })
         }
 

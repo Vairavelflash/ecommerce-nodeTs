@@ -18,6 +18,9 @@ export const createProduct = async (data: CreateProductInput) => {
 
 export const getAllProducts = async () => {
   return prisma.product.findMany({
+    where:{
+      isDeleted: false,
+    },
     orderBy: {
       created_at: "desc",
     },
@@ -65,6 +68,7 @@ export const getSearchProducts = async (search?: string) => {
 export const getSearchProducts2 = async (q: string) => {
   return prisma.product.findMany({
     where: {
+      isDeleted: false,
       OR: [
         {
           name: {

@@ -28,7 +28,7 @@ export const getAllProductsController = async (
 
   res.status(200).json({
     success: true,
-    products,
+    data:products,
   });
 };
 

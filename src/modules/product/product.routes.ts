@@ -16,7 +16,7 @@ import { roleMiddleware } from "../../middleware/role.middleware";
 const router = Router();
 
 router.get("/", getAllProductsController);
-router.get("/search",getSearchProductsController)
+router.get("/",getSearchProductsController)
 
 router.post(
   "/",
