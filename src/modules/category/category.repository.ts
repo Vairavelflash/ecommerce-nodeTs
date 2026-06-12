@@ -13,7 +13,7 @@ export const getCategoryByName = async (name:string) =>{
     return prisma.category.findFirst({
         where:{
             name:{
-                equals:name,
+                contains:name.trim(),
                 mode:"insensitive"
             }
         }
@@ -30,4 +30,16 @@ export const getAllCategories = async() =>{
 
 export const getCategoryById = async() =>{
     
+}
+
+export const getCategoryList = async() =>{
+    return prisma.category.findMany({
+        select:{
+            id:true,
+            name:true
+        },
+        orderBy:{
+            name:"asc"
+        }
+    })
 }
