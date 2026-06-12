@@ -62,7 +62,7 @@ export const refreshTokenController = async (req: Request, res: Response) => {
   if (!refreshToken) {
     throw new Error("Invalid Token");
   }
-  
+
   // Decode Refresh Token
   const decoded: any = jwt.verify(
     refreshToken,
@@ -86,5 +86,29 @@ export const refreshTokenController = async (req: Request, res: Response) => {
   return res.json({
     success: true,
     message: "Access token refreshed successfully",
+  });
+};
+
+export const authmeController = async (req: Request, res: Response) => {
+  const accessTokenToken = req.cookies.accessToken;
+
+  if (!accessTokenToken) {
+    throw new Error("Invalid Token");
+  }
+
+  // Decode Refresh Token
+  const decoded: any = jwt.verify(
+    accessTokenToken,
+    process.env.JWT_REFRESH_SECRET as string,
+  );
+
+  const payload = {
+    id: decoded?.id,
+    role: decoded?.role,
+  };
+
+  return res.json({
+    success: true,
+    data: payload,
   });
 };
