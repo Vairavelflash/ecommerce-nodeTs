@@ -3,7 +3,7 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import prisma from "../lib/prisma";
 
 const model = new ChatMistralAI({
-  apiKey: "KQpq9x34XSgnQf2Be8ISxmsh12sxifRD",
+  apiKey: process.env.AI_KEY,
   model: "mistral-small-latest",
 });
 

@@ -14,6 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1068.0",
+    "@aws-sdk/s3-request-presigner": "^3.1068.0",
     "@langchain/core": "^1.1.48",
     "@langchain/mistralai": "^1.1.0",
     "@mistralai/mistralai": "^2.2.5",

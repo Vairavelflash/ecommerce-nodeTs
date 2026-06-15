@@ -4,7 +4,7 @@ import prisma from "../lib/prisma";
 import { z } from "zod";
 
 const model = new ChatMistralAI({
-  apiKey: "KQpq9x34XSgnQf2Be8ISxmsh12sxifRD",
+  apiKey: process.env.AI_KEY,
   model: "mistral-small-latest",
 });
 
