@@ -7,6 +7,6 @@ import { authMiddleware } from "../../middleware/auth.middleware";
 const router = Router();
 
 router.post("/chat",chat)
-router.post("/query",authMiddleware,queryChat)
+router.post("/query",queryChat)
 
 export default router;

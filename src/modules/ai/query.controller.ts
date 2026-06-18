@@ -4,7 +4,7 @@ import { HumanMessage } from "langchain";
 
 export async function queryChat(req: Request, res: Response) {
   try {
-    const { question } = req.body;
+    const { prompt,userId,role } = req.body;
 
     // res.setHeader("Content-Type", "text/event-stream");
     // res.setHeader("Cache-Control", "no-cache");
@@ -12,13 +12,15 @@ export async function queryChat(req: Request, res: Response) {
 
     // res.flushHeaders();
 
-    const agent = ecommerceAgent(req.user.id,req.user.role)
+    // const agent = ecommerceAgent(req.user.id,req.user.role)
+    const agent = ecommerceAgent(userId,role)
+
 
     const stream = await agent.invoke({
-      messages: [new HumanMessage(question)],
+      messages: [new HumanMessage(prompt)],
     });
 
-     console.dir(stream, { depth: null });
+    //  console.dir(stream, { depth: null });
 
     const lastMessage =
       stream.messages[stream.messages.length - 1];
