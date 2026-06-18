@@ -10,7 +10,7 @@ import { roleMiddleware } from "../../middleware/role.middleware";
 
 const router = Router();
 
-router.get("/", getAllCategoriesContoller);
+router.get("/",authMiddleware, getAllCategoriesContoller);
 router.get("/list",getCategoryListController)
 router.get("/:name", getCategoryContoller);
 
