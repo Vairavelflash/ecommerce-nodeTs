@@ -5,6 +5,7 @@ import {
   getCartController,
   updateCartItemController,
   deleteCartItemController,
+  getCartItemsController,
 } from "./cart.controller";
 
 import { authMiddleware } from "../../middleware/auth.middleware";

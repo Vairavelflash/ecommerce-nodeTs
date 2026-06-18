@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { AuthRequest } from "../../middleware/auth.middleware";
-import { addToCartService, deleteCartItemService, getMyCartService, updateCartItemService } from "./cart.service";
+import { addToCartService, deleteCartItemService, getCartItemsService, getMyCartService, updateCartItemService } from "./cart.service";
 
 export const addToCartController =
   async (
@@ -39,6 +39,23 @@ export const getCartController =
   };
 
 
+  export const getCartItemsController =
+  async (
+    req: AuthRequest,
+    res: Response
+  ) => {
+    const result =
+      await getCartItemsService(
+        req.user.id
+      );
+
+    res.json({
+      success: true,
+      data: result,
+    });
+  };
+
+
   export const updateCartItemController =
   async (
     req: AuthRequest,
@@ -64,7 +81,7 @@ export const getCartController =
   ) => {
     await deleteCartItemService(
       req.params.itemId as string,
-      req.user.userId
+      req.user.id
     );
 
     res.json({
@@ -73,3 +90,4 @@ export const getCartController =
         "Item removed",
     });
   };
+
