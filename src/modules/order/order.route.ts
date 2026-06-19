@@ -7,7 +7,7 @@ const router = Router();
 
 router.use(authMiddleware);
 
-router.post("/checkout",checkoutController)
+router.post("/checkout",authMiddleware,checkoutController)
 router.get("/",authMiddleware,getMyOrdersController)
 router.get("/:id",getOrderByIdController)
 router.patch("/:orderId/status",authMiddleware,roleMiddleware("ADMIN"),updateOrderStatusController)

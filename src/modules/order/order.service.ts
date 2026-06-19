@@ -1,5 +1,6 @@
 import { generateOrderNumber } from "../../common/utils/order-number";
 import prisma from "../../lib/prisma";
+import { getUserOrder } from "./order.repository";
 
 export const checkoutService = async (userId: string) => {
   const cart = await prisma.cart.findUnique({
@@ -75,21 +76,23 @@ export const checkoutService = async (userId: string) => {
 };
 
 export const getMyOrderService = async (userId: string) => {
-  return prisma.order.findMany({
-    where: {
-      userId,
-    },
-    include: {
-      items: {
-        include: {
-          product: true,
-        },
-      },
-    },
-    orderBy: {
-      created_at: "desc",
-    },
-  });
+  const orders = await getUserOrder(userId);
+
+  const flatternOrders = orders.map((order) => ({
+    ...order,
+    items: order.items.map((item) => ({
+      id: item.id,
+      quantity: item.quantity,
+      unitPrice: item.unitPrice,
+      subtotal: item.subtotal,
+      // Flattened product fields
+      productId: item.product?.id,
+      productName: item.product?.name,
+      productImageUrl: item.product?.imageUrl,
+    })),
+  }));
+
+  return flatternOrders;
 };
 
 export const getOrderByIdService = async (orderId: string, userId: string) => {
@@ -114,13 +117,11 @@ export const getOrderByIdService = async (orderId: string, userId: string) => {
   return order;
 };
 
-
-
 export const updateOrderStatusService = async (
   orderId: string,
   newStatus: string,
 ) => {
-    console.log('first',orderId,newStatus)
+  console.log("first", orderId, newStatus);
   const order = await prisma.order.findUnique({
     where: {
       id: orderId,
@@ -163,7 +164,7 @@ export const updateOrderStatusService = async (
       id: orderId,
     },
     data: {
-      status: newStatus as any
+      status: newStatus as any,
     },
   });
 };
