@@ -7,12 +7,12 @@ export const registerController = async (req: Request, res: Response) => {
   const { name, email, password, role } = req.body;
   const result = await registerService(name, email, password, role);
 
-  res.cookie("accessToken", result.accessToken, {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
+  // res.cookie("accessToken", result.accessToken, {
+  //   httpOnly: true,
+  //   secure: false,
+  //   sameSite: "lax",
+  //   maxAge: 7 * 24 * 60 * 60 * 1000,
+  // });
 
   res.status(201).json({
     success: true,

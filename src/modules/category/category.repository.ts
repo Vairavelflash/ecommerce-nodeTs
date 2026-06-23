@@ -20,11 +20,20 @@ export const getCategoryByName = async (name:string) =>{
     })
 }
 
-export const getAllCategories = async() =>{
+export const getAllCategories = async(where:any,skip:any,limit:any) =>{
     return prisma.category.findMany({
+        where,
+        skip,
+        take:limit,
         orderBy:{
             created_at:"desc"
         }
+    })
+}
+
+export const getCategoryCount = async (where:any) =>{
+    return prisma.category.count({
+        where
     })
 }
 
