@@ -1,7 +1,7 @@
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { ChatMistralAI } from "@langchain/mistralai";
 
-const model = new ChatMistralAI({
+export const model = new ChatMistralAI({
   apiKey: process.env.AI_KEY,
   model: "mistral-small-latest",
   temperature: 0.7,
