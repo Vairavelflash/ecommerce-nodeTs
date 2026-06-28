@@ -6,7 +6,7 @@ import { searchCategoriesTool } from "./tools/category.tool";
 import { Role } from "../../generated/prisma";
 import { searchUserTool } from "./tools/user.tool";
 
-const model = new ChatMistralAI({
+export const model = new ChatMistralAI({
   apiKey: process.env.AI_KEY,
   model: "mistral-small-latest",
   temperature: 0.3,

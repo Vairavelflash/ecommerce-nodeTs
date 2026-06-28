@@ -112,6 +112,13 @@ content String
 created_at DateTime @default(now())
 }
 
+model DocumentChunk{
+  id String @id @default(uuid())
+  documentName String
+  chunk String
+  
+}
+
 enum Role {
   ADMIN
   USER

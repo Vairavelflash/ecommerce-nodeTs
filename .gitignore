@@ -5,3 +5,5 @@ dist
 ca.pem
 
 /generated/prisma
+
+package-lock.json
