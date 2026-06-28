@@ -1,5 +1,5 @@
 import prisma from "../../lib/prisma";
-import { createProduct, deleteProduct, getAllProducts, getProductsById, getSearchProducts, getSearchProducts2, updateProduct } from "./product.repository";
+import { createProduct, deleteProduct, getAllProducts, getProductsById, getProductsCount, getSearchProducts, getSearchProducts2, updateProduct } from "./product.repository";
 
 type CreateProductInput = {
   name: string;
@@ -25,8 +25,29 @@ export const createProductService = async (data: CreateProductInput) => {
   return createProduct(data);
 };
 
-export const getAllProductsService = async () => {
-  return getAllProducts();
+export const getAllProductsService = async (page:number,limit:number,search?:string) => {
+  const skip = (page-1)*limit;
+
+  const where = search ? {
+    name:{
+      contains:search,
+      mode:"insensitive" as const
+    },
+    isDeleted: false
+  }: {
+    isDeleted: false
+  }
+  
+  const [products,total] = await Promise.all([getAllProducts(where,skip,limit),getProductsCount(where)])
+  return {
+    products,
+    pagination:{
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total/limit)
+    }
+  }
 };
 
 export const getSearchProductsService = async (search:string) => {

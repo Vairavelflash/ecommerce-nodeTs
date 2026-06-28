@@ -16,16 +16,22 @@ export const createProduct = async (data: CreateProductInput) => {
   });
 };
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (where:any,skip:any,limit:any) => {
   return prisma.product.findMany({
-    where:{
-      isDeleted: false,
-    },
+    where,
+    skip,
+    take:limit,
     orderBy: {
       created_at: "desc",
     },
   });
 };
+
+export const getProductsCount = async(where:any) =>{
+  return prisma.product.count({
+    where
+  })
+}
 
 export const getProductsById = async (id: string) => {
   return prisma.product.findFirst({
