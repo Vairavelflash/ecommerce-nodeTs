@@ -48,7 +48,7 @@ export async function chat(req: Request, res: Response) {
   const { prompt } = req.body;
 
   const agent = aiAgent();
-  const response = await agent.invoke({
+  const response:any = await agent.invoke({
     messages: [
       {
         role: "user",
@@ -58,7 +58,7 @@ export async function chat(req: Request, res: Response) {
   });
 
   // console.log(response);
-  const lastMessage = response.messages?.at(-1);
+  const lastMessage = response.messages.at(-1);
   return res.json({
     success: true,
     content: lastMessage?.content,

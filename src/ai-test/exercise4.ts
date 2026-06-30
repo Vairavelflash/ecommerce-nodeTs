@@ -32,7 +32,7 @@ const getProductTool = tool(
 async function main() {
   const modelWithTools = model.bindTools([getProductTool]);
 
-  const response = await modelWithTools.invoke("Do you have iPhone products?");
+  const response:any = await modelWithTools.invoke("Do you have iPhone products?");
 
   console.log(response.tool_calls);
 
