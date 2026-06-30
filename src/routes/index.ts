@@ -7,6 +7,7 @@ import orderRoutes from "../modules/order/order.route";
 import aiRoutes from "../modules/ai/chat.route"
 import uploadRoutes from "../modules/uploads/upload.routes"
 import aiAgentRoutes from "../modules/aiAgent/chat.route";
+import ragUploadRoutes from "../modules/ragUpload/rag.routes"
 
 const router = Router();
 
@@ -15,8 +16,13 @@ router.use("/categories",categoryRoutes)
 router.use("/products",productRoutes)
 router.use("/cart", cartRoutes);
 router.use("/orders", orderRoutes)
-router.use("/ai",aiRoutes)
 router.use("/aiAgent",aiAgentRoutes)
+
+// AI
+router.use("/ai",aiRoutes)
+router.use("/pdf",ragUploadRoutes)
+
+// S3 upload
 router.use("/uploads",uploadRoutes)
 
 export default router;
