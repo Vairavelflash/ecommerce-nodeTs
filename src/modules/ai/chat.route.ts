@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {chat} from "./chat.controller"
-import {queryChat} from "../aiAgent/query.controller"
 import { authMiddleware } from "../../middleware/auth.middleware";
 import { ragChat } from "./rag.controller";
 import multer from "multer"
@@ -13,8 +12,7 @@ const upload = multer({
 });
 
 router.post("/chat",chat)
-// router.post("/query",queryChat)
-router.post("/rag",upload.single("file"),ragChat)
-router.post("/rag/ask",ragAsk)
+// router.post("/rag",upload.single("file"),ragChat)
+// router.post("/rag/ask",ragAsk)
 
 export default router;
