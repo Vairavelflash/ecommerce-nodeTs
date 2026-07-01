@@ -29,8 +29,8 @@ export const uploadDocument = async (req: Request, res: Response) => {
 
     // Generate Embeddings
     const vectors = await embeddings.embedDocuments(splitDocs.map((doc) => doc.pageContent));
-     console.log(vectors.length);
-    console.log(vectors[0].length);
+    //  console.log(vectors.length);
+    // console.log(vectors[0].length);
 
     for(let i=0;i< splitDocs.length;i++){
         const vector = `[${vectors[i].join(",")}]`;

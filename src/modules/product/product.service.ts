@@ -51,7 +51,7 @@ export const getAllProductsService = async (page:number,limit:number,search?:str
 };
 
 export const getSearchProductsService = async (search:string) => {
-  console.log('first',search)
+  // console.log('first',search)
   // return getSearchProducts(search);
   return getSearchProducts2(search)
 };

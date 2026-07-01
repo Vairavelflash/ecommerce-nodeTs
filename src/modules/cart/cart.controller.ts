@@ -7,7 +7,7 @@ export const addToCartController =
     req: AuthRequest,
     res: Response
   ) => {
-    console.log(req.body,req.user)
+    // console.log(req.body,req.user)
     const result =
       await addToCartService(
         req.user.id,

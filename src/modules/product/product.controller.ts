@@ -68,7 +68,7 @@ export const getSearchProductsController = async (
   res: Response,
 ) => {
   const { q } = req.query;
-  console.log("first", q);
+  // console.log("first", q);
 
   // const products = await getSearchProductsService(q);
 

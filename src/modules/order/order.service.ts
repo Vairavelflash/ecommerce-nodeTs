@@ -121,7 +121,7 @@ export const updateOrderStatusService = async (
   orderId: string,
   newStatus: string,
 ) => {
-  console.log("first", orderId, newStatus);
+  // console.log("first", orderId, newStatus);
   const order = await prisma.order.findUnique({
     where: {
       id: orderId,
