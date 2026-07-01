@@ -14,6 +14,7 @@ app.use(helmet());
 app.use(cors({
     origin:["http://localhost:3000",
         "https://e-commerce-vaira-vels-projects.vercel.app",
+        "https://e-commerce-chi-pied-87.vercel.app"
     ],
     credentials:true
 }));
