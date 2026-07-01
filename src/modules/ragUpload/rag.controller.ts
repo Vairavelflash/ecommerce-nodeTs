@@ -3,6 +3,7 @@ import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { embeddings } from "../../lib/embedding";
 import prisma from "../../lib/prisma";
+import { v4 as uuidv4 } from 'uuid';
 
 export const uploadDocument = async (req: Request, res: Response) => {
   try {
@@ -39,7 +40,7 @@ export const uploadDocument = async (req: Request, res: Response) => {
         INSERT INTO "DocumentChunk"
     ("id","documentName","chunk","embedding")
     VALUES
-    (   ${i},
+    (   ${uuidv4()},
         ${req.file.originalname},
         ${splitDocs[i].pageContent},
         ${vector}::vector
